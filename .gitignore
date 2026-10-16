@@ -1,0 +1,19 @@
+# Dependencies and package output
+node_modules/
+*.tgz
+
+# Local environment and secrets
+.env
+.env.*
+.dev.vars
+.wrangler/
+
+# Build and test output
+dist/
+coverage/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.log

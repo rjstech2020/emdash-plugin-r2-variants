@@ -1,0 +1,64 @@
+---
+/**
+ * Drop-in replacement for `Image` from "emdash/ui".
+ *
+ * When stored variants exist for the current original (and for the dark-mode
+ * image, if there is one), renders plain <img> tags whose srcset points at
+ * them, so a visitor's request never reaches the Worker when `publicUrl` is
+ * set. Otherwise renders EmDash's own Image for this request; the missing
+ * variants are created after the response.
+ *
+ * Dark-mode switching uses the emdash-image--light/--dark classes. Their CSS
+ * ships with EmDash's Image, which this component imports.
+ */
+import type { ComponentProps } from "astro/types";
+import { Image as EmDashImage } from "emdash/ui";
+
+import { lookup, storageKeyOf } from "../runtime.js";
+import { imgAttrs } from "../variants.js";
+
+type Props = ComponentProps<typeof EmDashImage>;
+
+const props = Astro.props;
+const { image, darkVariant, alt, width, height, priority, placeholder = true, class: className, id, ...attrs } = props;
+
+const asValue = (v: unknown) => (v && typeof v === "object" ? (v as Record<string, any>) : null);
+const light = asValue(image);
+const dark = asValue(darkVariant ?? light?.darkVariant);
+
+const lightKey = storageKeyOf(light);
+const darkKey = dark ? storageKeyOf(dark) : undefined;
+// Every image shown must be local media; otherwise EmDash renders the whole thing.
+const usable = lightKey && (!dark || darkKey);
+const [lightManifest, darkManifest] = usable
+	? await Promise.all([lookup(lightKey), darkKey ? lookup(darkKey) : null])
+	: [null, null];
+const ready = lightManifest && (!dark || darkManifest);
+
+function render(value: Record<string, any>, manifest: any, variantClass: string | undefined, elementId: string | undefined) {
+	const a = imgAttrs(manifest, {
+		width,
+		height,
+		focalX: value.focalX,
+		focalY: value.focalY,
+		dominantColor: placeholder ? (value.dominantColor ?? value.meta?.dominantColor) : undefined,
+	});
+	return {
+		...a,
+		id: elementId,
+		alt: alt ?? light?.alt ?? "",
+		loading: priority ? "eager" : "lazy",
+		fetchpriority: priority ? "high" : undefined,
+		decoding: "async",
+		class: [variantClass, className].filter(Boolean).join(" ") || undefined,
+		...attrs,
+	};
+}
+
+const lightImg = ready ? render(light!, lightManifest, dark ? "emdash-image--light" : undefined, id) : null;
+const darkImg = ready && dark ? render(dark, darkManifest, "emdash-image--dark", id ? `${id}--dark` : undefined) : null;
+---
+
+{lightImg ? <img {...lightImg} /> : <EmDashImage {...props} />}
+{darkImg && <img {...darkImg} />}
+

@@ -1,0 +1,91 @@
+---
+/**
+ * Portable Text `image` block. Registered through the plugin's componentsEntry,
+ * so every <PortableText> on the site uses it without template changes.
+ *
+ * Renders EmDash's markup (figure, alignment, caption) with stored variants.
+ * Falls back to EmDash's own block for linked images, external providers, and
+ * images whose variants don't exist yet.
+ */
+import { PTImage } from "emdash/ui";
+
+import { lookup, storageKeyOf } from "../runtime.js";
+import { imgAttrs } from "../variants.js";
+
+const props = Astro.props;
+const { node, placeholder = true } = props;
+const asset = node?.asset;
+
+const ALIGNMENTS = new Set(["left", "center", "right", "wide", "full"]);
+const positive = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? v : undefined);
+const key = node?.link ? undefined : storageKeyOf(asset);
+const manifest = key ? await lookup(key) : null;
+
+const img = manifest
+	? {
+			...imgAttrs(manifest, {
+				width: positive(node.displayWidth),
+				height: positive(node.displayHeight),
+				dominantColor: placeholder ? (node.dominantColor ?? asset.meta?.dominantColor) : undefined,
+			}),
+			alt: node.alt ?? "",
+			title: node.title,
+			loading: "lazy",
+			decoding: "async",
+		}
+	: null;
+---
+
+{
+	img ? (
+		<figure class:list={["emdash-image", ALIGNMENTS.has(node.alignment) && `emdash-image--align-${node.alignment}`]}>
+			<img {...img} />
+			{node.caption && <figcaption>{node.caption}</figcaption>}
+		</figure>
+	) : (
+		<PTImage {...props} />
+	)
+}
+
+<style>
+	/* Copied from EmDash's Portable Text image block, whose styles are scoped to it. */
+	.emdash-image {
+		margin: 1.5rem 0;
+	}
+	.emdash-image figcaption {
+		font-size: 0.875rem;
+		color: var(--emdash-caption-color, var(--color-muted, #666));
+		margin-top: 0.5rem;
+		text-align: center;
+	}
+	.emdash-image--align-left,
+	.emdash-image--align-right {
+		width: fit-content;
+		max-width: 50%;
+	}
+	.emdash-image--align-left {
+		float: left;
+		margin: 0 1.5rem 1rem 0;
+	}
+	.emdash-image--align-right {
+		float: right;
+		margin: 0 0 1rem 1.5rem;
+	}
+	.emdash-image--align-center {
+		width: fit-content;
+		margin-inline: auto;
+	}
+	.emdash-image--align-wide,
+	.emdash-image--align-full {
+		width: 100%;
+	}
+	@media (max-width: 640px) {
+		.emdash-image--align-left,
+		.emdash-image--align-right {
+			float: none;
+			width: 100%;
+			max-width: 100%;
+			margin-inline: 0;
+		}
+	}
+</style>

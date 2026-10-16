@@ -1,0 +1,53 @@
+{
+  "name": "emdash-plugin-r2-variants",
+  "version": "0.1.0",
+  "description": "Image variants plugin for EmDash CMS - stores each resized image in R2 once and serves it without a Worker transform",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./plugin": "./src/plugin.js",
+    "./astro": "./src/astro/index.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "!src/**/*.test.js",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "emdash",
+    "emdash-plugin",
+    "cms",
+    "plugin",
+    "images",
+    "responsive-images",
+    "r2",
+    "cloudflare",
+    "astro"
+  ],
+  "author": "RJS Tech Solutions LLP",
+  "license": "MIT",
+  "peerDependencies": {
+    "astro": ">=6",
+    "emdash": ">=1.1.0"
+  },
+  "scripts": {
+    "test": "node --test src/"
+  },
+  "devDependencies": {
+    "emdash": ">=1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjstech2020/emdash-plugin-r2-variants.git"
+  },
+  "homepage": "https://github.com/rjstech2020/emdash-plugin-r2-variants#readme",
+  "bugs": {
+    "url": "https://github.com/rjstech2020/emdash-plugin-r2-variants/issues"
+  }
+}
