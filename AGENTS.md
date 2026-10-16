@@ -107,3 +107,8 @@ Run these from the site that uses the plugin, unless noted.
 - Add a `CHANGELOG.md` entry.
 - `npm pack --dry-run` lists only `src/` (no tests), `README.md`, `LICENSE`,
   `CHANGELOG.md` and `package.json`.
+- Commit, then push a tag: `git tag vX.Y.Z && git push origin vX.Y.Z`. The
+  Release workflow checks the tag against all three versions, runs the tests and
+  stages the version on npm.
+- Approve the staged version on npmjs.com (Staged Packages tab) or with
+  `npm stage approve <id>`. Approval needs 2FA and cannot be done from CI.
