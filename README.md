@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/rjstech2020/emdash-plugin-r2-variants/main/registry/images/icon.png" alt="" width="96" height="96" align="right">
+
 # emdash-plugin-r2-variants
 
 An [EmDash](https://github.com/emdash-cms/emdash) plugin for sites on Cloudflare
