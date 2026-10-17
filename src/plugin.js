@@ -16,7 +16,7 @@ export function createPlugin(options = {}) {
 	configure(options);
 	return definePlugin({
 		id: "r2-variants",
-		version: "0.1.0",
+		version: "0.1.1",
 		// media:read is what EmDash requires for media:afterUpload.
 		capabilities: ["media:read"],
 		hooks: {

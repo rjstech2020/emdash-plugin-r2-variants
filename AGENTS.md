@@ -91,6 +91,9 @@ Run these from the site that uses the plugin, unless noted.
 - [ ] For a runtime change, the cleanup job still works: plant an orphan under
       `_variants/`, make the `r2-variants` task due, trigger
       `/cdn-cgi/handler/scheduled`, and check the log reports it removed.
+- [ ] Install the packed tarball (`npm pack`, then `npm install <path>.tgz` in
+      a disposable site), run `npx astro build` there and render a page with an
+      `Image` and a Portable Text image. This catches files missing from `files`.
 - [ ] `README.md`, `src/index.d.ts` and `CHANGELOG.md` match the change.
 
 ## Writing style for README and comments
@@ -104,7 +107,12 @@ Run these from the site that uses the plugin, unless noted.
 ## Releasing
 
 - Bump `version` in `package.json`, `src/index.js` and `src/plugin.js` together.
-- Add a `CHANGELOG.md` entry.
+- Use semantic versioning. Changes to options, stored data (the `_variants/`
+  layout or manifest), package exports, required host setup or trust
+  requirements are compatibility decisions: bump accordingly and add upgrade
+  steps to the README.
+- Add a `CHANGELOG.md` entry. Name any new capability or allowed host in it,
+  because native installs show operators no consent prompt.
 - `npm pack --dry-run` lists only `src/` (no tests), `README.md`, `LICENSE`,
   `CHANGELOG.md` and `package.json`.
 - Commit, then push a tag: `git tag vX.Y.Z && git push origin vX.Y.Z`. The

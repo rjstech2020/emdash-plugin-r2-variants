@@ -1,6 +1,6 @@
 {
   "name": "emdash-plugin-r2-variants",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Image variants plugin for EmDash CMS - stores each resized image in R2 once and serves it without a Worker transform",
   "type": "module",
   "main": "src/index.js",

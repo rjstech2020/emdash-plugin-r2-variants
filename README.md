@@ -153,6 +153,20 @@ import { Image } from "emdash-plugin-r2-variants/astro";
 3. Add a cron trigger to `wrangler.jsonc` so EmDash's scheduled handler runs plugin
    jobs, for example `"triggers": { "crons": ["* * * * *"] }`.
 
+## Capabilities
+
+| Capability   | Used by                                                                                   |
+| ------------ | ----------------------------------------------------------------------------------------- |
+| `media:read` | The `media:afterUpload` hook, which schedules the daily cleanup job. EmDash requires this capability for that hook. |
+
+The plugin declares no allowed hosts and makes no network requests.
+
+Capabilities gate only the `ctx` APIs that EmDash passes to the plugin. As a
+native plugin, this code also has access to everything the site's Worker has,
+including all bindings and environment variables. That access is why the
+plugin can read and write R2 directly. Review it as you would the site's own
+code.
+
 ## Security
 
 - Storage keys are read from content, so the plugin accepts only keys that

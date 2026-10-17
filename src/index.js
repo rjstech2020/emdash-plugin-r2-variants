@@ -12,7 +12,7 @@ export function r2Variants(options = {}) {
 	validate(options);
 	return {
 		id: "r2-variants",
-		version: "0.1.0",
+		version: "0.1.1",
 		format: "native",
 		entrypoint: "emdash-plugin-r2-variants/plugin",
 		componentsEntry: "emdash-plugin-r2-variants/astro",
