@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b1d8f"/>
+      <stop offset="1" stop-color="#7b2ff7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.55" r="0.5">
+      <stop offset="0" stop-color="#ffe066" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffe066" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="can" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d9defa"/>
+      <stop offset="0.45" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#b9c0ef"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff38a"/>
+      <stop offset="1" stop-color="#ffb000"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- burst -->
+  <g fill="#ffffff" opacity="0.10">
+    <path d="M256 290 L180 20 L240 20 Z"/>
+    <path d="M256 290 L332 20 L392 40 Z"/>
+    <path d="M256 290 L500 150 L512 220 Z"/>
+    <path d="M256 290 L12 150 L0 220 Z"/>
+    <path d="M256 290 L60 40 L120 20 Z"/>
+  </g>
+  <circle cx="256" cy="290" r="230" fill="url(#glow)"/>
+
+  <!-- speed lines -->
+  <g stroke="#ffe066" stroke-width="14" stroke-linecap="round" opacity="0.9">
+    <line x1="92" y1="250" x2="92" y2="330"/>
+    <line x1="60" y1="290" x2="60" y2="350"/>
+    <line x1="420" y1="250" x2="420" y2="330"/>
+    <line x1="452" y1="290" x2="452" y2="350"/>
+  </g>
+
+  <!-- storage bucket -->
+  <g>
+    <path d="M136 200 V380 C136 418 376 418 376 380 V200 Z" fill="url(#can)"/>
+    <path d="M136 260 C136 292 376 292 376 260" fill="none" stroke="#9aa3e6" stroke-width="6"/>
+    <path d="M136 320 C136 352 376 352 376 320" fill="none" stroke="#9aa3e6" stroke-width="6"/>
+    <ellipse cx="256" cy="200" rx="120" ry="34" fill="#eef0ff"/>
+    <ellipse cx="256" cy="200" rx="96" ry="22" fill="#c9cff5"/>
+    <text x="256" y="372" text-anchor="middle" font-family="Arial Black, Helvetica Neue, Arial, sans-serif"
+          font-weight="900" font-size="104" fill="#3b1d8f" letter-spacing="-2">R2</text>
+  </g>
+
+  <!-- power-up bolt rising out of the bucket -->
+  <path d="M286 36 L196 214 H252 L218 330 L330 150 H272 L310 36 Z"
+        fill="url(#bolt)" stroke="#7a3d00" stroke-width="10" stroke-linejoin="round"/>
+
+  <!-- sparkles -->
+  <g fill="#ffffff">
+    <path d="M118 104 l10 26 26 10 -26 10 -10 26 -10 -26 -26 -10 26 -10 z"/>
+    <path d="M404 92 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7 z"/>
+    <path d="M410 420 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6 z" opacity="0.8"/>
+  </g>
+</svg>

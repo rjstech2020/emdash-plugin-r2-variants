@@ -25,6 +25,13 @@
 	"allowedHosts": [],
 	"storage": {},
 
+	// images/icon.svg is the source; icon.png is rendered from it at 256x256.
+	"release": {
+		"artifacts": {
+			"icon": { "file": "images/icon.png" },
+		},
+	},
+
 	"admin": {
 		"pages": [{ "path": "/about", "label": "R2 Image Variants", "icon": "info" }],
 	},
