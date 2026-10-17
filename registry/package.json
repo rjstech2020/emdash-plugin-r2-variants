@@ -1,0 +1,21 @@
+{
+  "name": "emdash-plugin-r2-variants-listing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sandboxed EmDash Registry listing for emdash-plugin-r2-variants. Adds one information page that points to the native plugin on npm.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "validate": "emdash-plugin validate",
+    "build": "emdash-plugin build",
+    "bundle": "emdash-plugin bundle",
+    "typecheck": "tsc --noEmit",
+    "test": "emdash-plugin validate && node --test src/"
+  },
+  "devDependencies": {
+    "@emdash-cms/plugin-cli": "0.13.4",
+    "@types/node": "26.6.5",
+    "emdash": "1.3.0",
+    "typescript": "5.9.3"
+  }
+}

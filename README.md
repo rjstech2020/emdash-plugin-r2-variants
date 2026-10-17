@@ -55,6 +55,10 @@ the site's authority, because it needs the R2 and Images bindings and ships Astr
 components. EmDash's plugin registry distributes only sandboxed plugins, so this
 package is distributed through npm.
 
+The registry entry for this plugin (`registry/` in this repository) is a separate
+sandboxed listing. Installing it adds one admin page that links here and does
+nothing else. It does not install or enable this package.
+
 ## Install
 
 ```sh

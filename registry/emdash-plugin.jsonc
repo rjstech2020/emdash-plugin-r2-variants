@@ -1,0 +1,31 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	// Permanent after the first publish.
+	"slug": "r2-variants",
+	// rajatag.bsky.social. Pinned by DID because handles can change owners.
+	"publisher": "did:plc:2ekmnswpg62fuxjsqzpc2gz5",
+
+	"name": "R2 Image Variants",
+	// Every piece of listing text says the feature comes from npm: the
+	// Registry's labeler rejects listings that claim more than they install.
+	"description": "Resize each image once with Cloudflare Images and serve srcset copies from R2. Install the native plugin from npm; this links to it.",
+	"keywords": ["images", "responsive-images", "r2", "cloudflare", "native"],
+	"sections": {
+		"description": { "file": "listing/description.md" },
+		"installation": { "file": "listing/installation.md" },
+	},
+	"license": "MIT",
+	"author": { "name": "RJS Tech Solutions LLP" },
+	"security": { "url": "https://github.com/rjstech2020/emdash-plugin-r2-variants/security/advisories/new" },
+	"repo": "https://github.com/rjstech2020/emdash-plugin-r2-variants",
+
+	// This listing only shows an information page, so it asks for nothing.
+	"capabilities": [],
+	"allowedHosts": [],
+	"storage": {},
+
+	"admin": {
+		"pages": [{ "path": "/about", "label": "R2 Image Variants", "icon": "info" }],
+	},
+}
