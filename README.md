@@ -1,4 +1,6 @@
-<img src="https://raw.githubusercontent.com/rjstech2020/emdash-plugin-r2-variants/main/registry/images/icon.png" alt="" width="96" height="96" align="right">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/rjstech2020/emdash-plugin-r2-variants/main/registry/images/icon.png" alt="" width="128" height="128">
+</p>
 
 # emdash-plugin-r2-variants
 
